@@ -1,37 +1,66 @@
 <html>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-	<title></title>
-	<meta name="generator" content="LibreOffice 25.2.3.2 (Linux)"/>
-	<meta name="created" content="00:00:00"/>
-	<meta name="changed" content="00:00:00"/>
-	<style type="text/css">
-		@page { size: 8.27in 11.69in; margin: 0.79in }
-		p { margin-bottom: 0.1in; line-height: 115%; background: transparent }
-		pre { font-size: 10pt; font-family: "Liberation Mono", monospace; background: transparent }
-	</style>
-</head>
-<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><pre>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Notcoin 2.0&lt;/title&gt;
-    &lt;style&gt;
-        body { background: black; color: gold; text-align: center; }
-        #coin { width: 200px; height: 200px; background: gold; border-radius: 50%; margin: 30px auto; }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;NOTCOIN 2.0 🪙&lt;/h1&gt;
-    &lt;h3&gt;Coins: &lt;span id=&quot;coins&quot;&gt;0&lt;/span&gt;&lt;/h3&gt;
-    &lt;div id=&quot;coin&quot; onclick=&quot;tap()&quot;&gt;&lt;/div&gt;
-    &lt;script&gt;
-        let coins = 0;
-        function tap() { 
-            coins++; 
-            document.getElementById(&quot;coins&quot;).innerHTML = coins; 
+    <title>Notcoin 2.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        body {
+            background: #000;
+            color: gold;
+            text-align: center;
+            font-family: Arial;
+            margin: 0;
+            padding: 0;
+            touch-action: manipulation; /* Stops zooming */
+            overflow: hidden;
+            height: 100vh;
         }
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</pre>
+        #coin {
+            width: 250px; /* Bigger coin! */
+            height: 250px;
+            background: radial-gradient(circle at 30% 30%, gold, darkgoldenrod);
+            border-radius: 50%;
+            margin: 20px auto;
+            cursor: pointer;
+            box-shadow: 0 0 30px yellow;
+            border: 5px solid goldenrod;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: rgba(0,0,0,0.3);
+            user-select: none;
+        }
+        #counter {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NOTCOIN 2.0</h1>
+    <div id="counter">Coins: <span id="coins">0</span></div>
+    <div id="coin" onclick="tapCoin()">N2</div>
+
+    <script>
+        let coins = 0;
+        const coin = document.getElementById("coin");
+        
+        function tapCoin() {
+            coins++;
+            document.getElementById("coins").textContent = coins;
+            
+            // Bounce effect
+            coin.style.transform = "scale(0.9)";
+            setTimeout(() => {
+                coin.style.transform = "scale(1)";
+            }, 100);
+        }
+        
+        // Disable double-tap zoom
+        document.addEventListener('dblclick', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
 </body>
 </html>
